@@ -11,7 +11,7 @@ public class FormulaServiceImpl implements FormulaService {
 
   @Override
   public double calculate(int a) {
-    log.debug("Entrance of calculate with a = {}", a);
+    log.debug("Entrance of calculate with a = {}...", a);
     return sqrt(a * 100);
   }
 
