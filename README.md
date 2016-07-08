@@ -26,6 +26,12 @@ cd /java8work/target
 java -jar java8work-1.0-SNAPSHOT.jar
 
 
+##################################################
+# To test the app
+##################################################
+curl http://localhost:8080/ -v -X GET
+
+
 # TODO
 http://winterbe.com/posts/2014/03/16/java-8-tutorial/
 http://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/

@@ -1,6 +1,6 @@
-package com.philippe.app.maths;
+package com.philippe.app.service.maths;
 
-public interface Formula {
+public interface FormulaService {
 
   double calculate(int a);
 
