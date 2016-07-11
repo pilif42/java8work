@@ -5,10 +5,7 @@ import com.philippe.app.service.persons.CollectorsService;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Named;
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Named
@@ -25,7 +22,13 @@ public class CollectorsServiceImpl implements CollectorsService {
         .collect(Collectors.toList());
     log.debug("filteredList is {}", filteredList);
 
+
+    Comparator<Person> byPersonAgeAscending = (e1, e2) -> Integer.compare(e1.getAge(), e2.getAge());
+    List<Person> sortedList = personsList.stream().sorted(byPersonAgeAscending).collect(Collectors.toList());
+    log.debug("sorted List = {}", sortedList);
+
     /**
+     * TODO sort the display below by age ascending
      * Next section displays
      * age 18: [Max]
      * age 23: [Peter, Pamela]
