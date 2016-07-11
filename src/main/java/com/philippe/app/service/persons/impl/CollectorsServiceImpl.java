@@ -28,13 +28,12 @@ public class CollectorsServiceImpl implements CollectorsService {
     log.debug("sorted List = {}", sortedList);
 
     /**
-     * TODO sort the display below by age ascending
      * Next section displays
      * age 18: [Max]
      * age 23: [Peter, Pamela]
      * age 12: [David]
      */
-    Map<Integer, List<Person>> personsByAge = personsList.stream()
+    Map<Integer, List<Person>> personsByAge = personsList.stream().sorted(byPersonAgeAscending)
         .collect(Collectors.groupingBy(p -> p.getAge()));
     personsByAge.forEach((age, p) -> log.debug("age {}: {}", age, p));
 
@@ -49,5 +48,13 @@ public class CollectorsServiceImpl implements CollectorsService {
     String phrase = personsList.stream().filter(p -> p.getAge() >= 18).map(p -> p.getName())
         .collect(Collectors.joining(" and ", "In Germany, ", " are of legal age."));
     log.debug("phrase = {}", phrase);
+
+    // Displays map = {18=Max, 23=Peter;Pamela, 12=David}
+    Map<Integer, String> map = personsList.stream()
+        .collect(Collectors.toMap(
+            p -> p.getAge(),
+            p -> p.getName(),
+            (name1, name2) -> name1 + ";" + name2));
+    log.debug("map = {}", map);
   }
 }
