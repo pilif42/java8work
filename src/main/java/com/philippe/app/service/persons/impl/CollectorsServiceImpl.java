@@ -33,5 +33,8 @@ public class CollectorsServiceImpl implements CollectorsService {
     Map<Integer, List<Person>> personsByAge = personsList.stream()
         .collect(Collectors.groupingBy(p -> p.getAge()));
     personsByAge.forEach((age, p) -> log.debug("age {}: {}", age, p));
+
+    Double averageAge = personsList.stream().collect(Collectors.averagingInt(p -> p.getAge()));
+    log.debug("averageAge = {}", averageAge);
   }
 }
