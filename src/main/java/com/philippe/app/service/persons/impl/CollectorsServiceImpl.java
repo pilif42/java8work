@@ -41,5 +41,10 @@ public class CollectorsServiceImpl implements CollectorsService {
     // Displays ageSummary = IntSummaryStatistics{count=4, sum=76, min=12, average=19.000000, max=23}
     IntSummaryStatistics ageSummary = personsList.stream().collect(Collectors.summarizingInt(p -> p.getAge()));
     log.debug("ageSummary = {}", ageSummary);
+
+    // Displays phrase = In Germany, Max and Peter and Pamela are of legal age.
+    String phrase = personsList.stream().filter(p -> p.getAge() >= 18).map(p -> p.getName())
+        .collect(Collectors.joining(" and ", "In Germany, ", " are of legal age."));
+    log.debug("phrase = {}", phrase);
   }
 }
