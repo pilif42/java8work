@@ -2,6 +2,7 @@ package com.philippe.app.endpoint;
 
 import com.philippe.app.service.dates.CalendarService;
 import com.philippe.app.service.maths.FormulaService;
+import com.philippe.app.service.persons.CollectorsService;
 import com.philippe.app.service.strings.SortingService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,6 +24,9 @@ public class TestEndpoint {
   private CalendarService calendarService;
 
   @Inject
+  private CollectorsService collectorsService;
+
+  @Inject
   private FormulaService formulaService;
 
   @Inject
@@ -42,6 +46,8 @@ public class TestEndpoint {
 
     List<String> myList = Arrays.asList("a1", "a2", "b1", "c2", "c1");
     sortingService.sortList(myList);
+
+    collectorsService.myExperiments();
 
     return Response.status(Response.Status.OK).build();
   }
