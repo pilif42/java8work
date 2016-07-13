@@ -1,6 +1,7 @@
 package com.philippe.app.endpoint;
 
 import com.philippe.app.service.dates.CalendarService;
+import com.philippe.app.service.flatmaps.TestService;
 import com.philippe.app.service.maths.FormulaService;
 import com.philippe.app.service.persons.CollectorsService;
 import com.philippe.app.service.strings.SortingService;
@@ -32,6 +33,9 @@ public class TestEndpoint {
   @Inject
   private SortingService sortingService;
 
+  @Inject
+  private TestService testService;
+
   @GET
   @Path("/")
   public final Response tester() {
@@ -48,6 +52,8 @@ public class TestEndpoint {
     sortingService.sortList(myList);
 
     collectorsService.myExperiments();
+
+    testService.myExperiments();
 
     return Response.status(Response.Status.OK).build();
   }
