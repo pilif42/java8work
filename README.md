@@ -15,7 +15,7 @@ mvn -N io.takari:maven:wrapper
 ##################################################
 # To run the app
 ##################################################
-# Prerequisites
+# Prerequisite
     - create the directory /var/log/perso/java8work and chmod it to 777
 
 # To run the app with the Maven wrapper
