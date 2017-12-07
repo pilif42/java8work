@@ -4,13 +4,13 @@ import com.philippe.app.domain.Bar;
 import com.philippe.app.domain.Foo;
 import com.philippe.app.service.flatmaps.TestService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
-import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-@Named
+@Service
 @Slf4j
 public class TestServiceImpl implements TestService {
 

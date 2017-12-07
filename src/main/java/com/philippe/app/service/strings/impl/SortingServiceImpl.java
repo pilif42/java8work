@@ -2,14 +2,14 @@ package com.philippe.app.service.strings.impl;
 
 import com.philippe.app.service.strings.SortingService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
-import javax.inject.Named;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 @Slf4j
-@Named
+@Service
 public class SortingServiceImpl implements SortingService {
   @Override public void sortList(List<String> stringList) {
     stringList

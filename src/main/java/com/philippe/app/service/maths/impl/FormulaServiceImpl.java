@@ -2,10 +2,9 @@ package com.philippe.app.service.maths.impl;
 
 import com.philippe.app.service.maths.FormulaService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
-import javax.inject.Named;
-
-@Named
+@Service
 @Slf4j
 public class FormulaServiceImpl implements FormulaService {
 

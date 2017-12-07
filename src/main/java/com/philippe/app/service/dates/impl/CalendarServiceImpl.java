@@ -2,15 +2,15 @@ package com.philippe.app.service.dates.impl;
 
 import com.philippe.app.service.dates.CalendarService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
-import javax.inject.Named;
 import java.util.Arrays;
 import java.util.List;
 import java.util.TimeZone;
 import java.util.stream.Collectors;
 
 
-@Named
+@Service
 @Slf4j
 public class CalendarServiceImpl implements CalendarService {
   @Override

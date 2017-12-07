@@ -3,12 +3,12 @@ package com.philippe.app.service.persons.impl;
 import com.philippe.app.domain.Person;
 import com.philippe.app.service.persons.CollectorsService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
-import javax.inject.Named;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Named
+@Service
 @Slf4j
 public class CollectorsServiceImpl implements CollectorsService {
 
