@@ -1,5 +1,7 @@
 package com.philippe.app.service.maths;
 
+import java.util.List;
+
 public interface FormulaService {
 
   double calculate(int a);
@@ -7,4 +9,6 @@ public interface FormulaService {
   default double sqrt(int a) {
     return Math.sqrt(a);
   }
+
+  List<Integer> filterList(List<Integer> inputList);
 }
