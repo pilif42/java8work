@@ -28,7 +28,7 @@ public class FormulaServiceImpl implements FormulaService {
   public List<Integer> filterList(List<Integer> inputList) {
     List<Integer> filteredList = new ArrayList<>();
     if (!CollectionUtils.isEmpty(inputList)) {
-      filteredList = inputList.stream().filter(lesserThan).collect(toList());;
+      filteredList = inputList.stream().filter(lesserThan).collect(toList());
     }
     return filteredList;
   }

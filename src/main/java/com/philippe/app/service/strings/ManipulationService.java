@@ -1,6 +1,8 @@
 package com.philippe.app.service.strings;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface ManipulationService {
     /**
@@ -13,4 +15,12 @@ public interface ManipulationService {
      * @return
      */
     Map<String, String> process(String aString);
+
+    /**
+     * Filter urls to return the first valid https url, ie ending with https port 443
+     *
+     * @param urlList a list of url strings
+     * @return a valid https url if one exists in the input list
+     */
+    Optional<String> filterUrls(List<String> urlList);
 }
