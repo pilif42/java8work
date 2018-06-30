@@ -23,4 +23,6 @@ public interface ManipulationService {
      * @return a valid https url if one exists in the input list
      */
     Optional<String> filterUrls(List<String> urlList);
+
+    byte[] transform(String input);
 }

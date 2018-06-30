@@ -1,6 +1,7 @@
 package com.philippe.app.service.strings.impl;
 
 import com.philippe.app.service.strings.ManipulationService;
+import org.apache.hadoop.hbase.util.Bytes;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -38,5 +39,10 @@ public class ManipulationServiceImpl implements ManipulationService {
             result = urlList.stream().filter(validHttpsUrl).findFirst();
         }
         return result;
+    }
+
+    @Override
+    public byte[] transform(String input) {
+        return Bytes.toBytes(input);
     }
 }

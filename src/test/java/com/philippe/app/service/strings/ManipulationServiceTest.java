@@ -15,6 +15,12 @@ import static org.junit.Assert.assertTrue;
 @RunWith(MockitoJUnitRunner.class)
 public class ManipulationServiceTest {
 
+    private final static byte CAPITAL_P = 80;
+    private final static byte E = 101;
+    private final static byte H = 104;
+    private final static byte I = 105;
+    private final static byte L = 108;
+    private final static byte P = 112;
     private final static String JSON = "JSON";
     private final static String TXT = "TXT";
     private final static String URL_HTTPS_1 = "https://www.bbc.co.uk:443";
@@ -53,5 +59,19 @@ public class ManipulationServiceTest {
     public void filterUrls_noHttpsUrl() {
         List<String> inputList = Arrays.asList(URL_HTTP_1, URL_HTTP_2);
         assertEquals(Optional.empty(), manipulationService.filterUrls(inputList));
+    }
+
+    @Test
+    public void transform() {
+        byte[] result = manipulationService.transform("Philippe");
+        assertEquals(8, result.length);
+        assertEquals(CAPITAL_P, result[0]);
+        assertEquals(H, result[1]);
+        assertEquals(I, result[2]);
+        assertEquals(L, result[3]);
+        assertEquals(I, result[4]);
+        assertEquals(P, result[5]);
+        assertEquals(P, result[6]);
+        assertEquals(E, result[7]);
     }
 }
