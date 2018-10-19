@@ -1,5 +1,6 @@
 package com.philippe.app.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -108,6 +109,12 @@ public class JsonReaderUtil {
 
     public static DocumentContext delete(DocumentContext jsonEventObject, String jsonPath) {
         return jsonEventObject.delete(jsonPath);
+    }
+
+    public static void beautifyJsonString(String jsonString) throws Exception {
+        com.fasterxml.jackson.databind.ObjectMapper mapper = new ObjectMapper();
+        Object json = mapper.readValue(jsonString, Object.class);
+        System.out.println("Beautiful json is: " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(json));
     }
 
     private static List<String> getStringValuesFromJsonArray(JsonArray jsonArray) {
