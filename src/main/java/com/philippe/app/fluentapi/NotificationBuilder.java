@@ -31,7 +31,7 @@ public class NotificationBuilder {
     /**
      * This method to define an optional field in a Notification.
      */
-    public NotificationBuilder addAction(String action) {
+    public NotificationBuilder addAction(final String action) {
         if (notificationInstance == null) {
             throw new IllegalArgumentException(String.format(ERROR_MSG, "action"));
         }

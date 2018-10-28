@@ -9,15 +9,10 @@ public class EventContextBuilder {
     private final Consumer<EventContext> callback;
     private EventContext eventContextInstance;
 
-    public EventContextBuilder(final NotificationWrapperBuilder parentBuilder, final Consumer<EventContext> callback) {
+    public EventContextBuilder(final NotificationWrapperBuilder parentBuilder, final Consumer<EventContext> callback, final String id, final String message) {
         this.parentBuilder = parentBuilder;
         this.callback = callback;
-        this.eventContextInstance = EventContext.builder().build();
-    }
-
-    public EventContextBuilder addId(final String id) {
-        eventContextInstance.setId(id);
-        return this;
+        this.eventContextInstance = new EventContext(id, message);
     }
 
     public EventContextBuilder addType(final String type) {
