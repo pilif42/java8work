@@ -31,3 +31,9 @@ curl -d '{"name":"Lionel", "favouriteColor":"blaugrana", "favouriteNumber":10}' 
 - dependency and plugin were added to the pom.xml
 - .avsc file created under src/main/avro
 - mvn clean install --> generates classes under src/main/java/example.avro
+
+
+
+TODO
+TODO in PublisherImpl
+TODO in TestEndpointTest

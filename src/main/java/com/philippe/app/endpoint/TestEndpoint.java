@@ -2,7 +2,7 @@ package com.philippe.app.endpoint;
 
 import com.philippe.app.domain.User;
 import com.philippe.app.representation.UserDTO;
-import com.philippe.app.exception.ProcessingException;
+import com.philippe.app.exception.CustomException;
 import com.philippe.app.representation.CreatedUserDTO;
 import com.philippe.app.service.dates.CalendarService;
 import com.philippe.app.service.flatmaps.TestService;
@@ -80,11 +80,11 @@ public class TestEndpoint {
   @RequestMapping(value = "/{userId}/users", method = RequestMethod.POST)
   public final ResponseEntity<CreatedUserDTO> createUser(@PathVariable("userId") final UUID userId,
                                                          @RequestBody @Valid final UserDTO userDTO,
-                                                         BindingResult bindingResult) {
+                                                         BindingResult bindingResult) throws CustomException {
     log.debug("Entering createUser with userId {} and requestObject {}", userId, userDTO);
 
     if (bindingResult.hasErrors()) {
-      throw new ProcessingException("Binding errors for user creation: " + bindingResult);
+      throw new CustomException(CustomException.Fault.VALIDATION_FAILED, "Binding errors for user creation: " + bindingResult);
     }
 
     final User user = mapperFacade.map(userDTO, User.class);

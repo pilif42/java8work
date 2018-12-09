@@ -6,7 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.PathNotFoundException;
-import com.philippe.app.exception.ProcessingException;
+import com.philippe.app.exception.CustomException;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +52,7 @@ public class JsonReaderUtil {
         }
     }
 
-    public static boolean getCriticalBooleanValueFromJson(DocumentContext json, String jPath) throws ProcessingException {
+    public static boolean getCriticalBooleanValueFromJson(DocumentContext json, String jPath) throws CustomException {
         try {
             return json.read(jPath, Boolean.class);
         } catch (PathNotFoundException | ClassCastException e) {
@@ -60,7 +60,7 @@ public class JsonReaderUtil {
         }
     }
 
-    public static String getCriticalStringValueFromJson(DocumentContext json, String jPath) throws ProcessingException {
+    public static String getCriticalStringValueFromJson(DocumentContext json, String jPath) throws CustomException {
         try {
             final String value = json.read(jPath, String.class);
             if (isBlank(value)) {
@@ -72,7 +72,7 @@ public class JsonReaderUtil {
         }
     }
 
-    public static JsonObject getCriticalObjectFromJson(DocumentContext json, String jPath) throws ProcessingException {
+    public static JsonObject getCriticalObjectFromJson(DocumentContext json, String jPath) throws CustomException {
         try {
             return json.read(jPath, JsonObject.class);
         } catch (PathNotFoundException | ClassCastException e) {
@@ -132,9 +132,9 @@ public class JsonReaderUtil {
         return values;
     }
 
-    private static ProcessingException getValidationException(DocumentContext json, String jPath, RuntimeException e) {
+    private static CustomException getValidationException(DocumentContext json, String jPath, RuntimeException e) {
         final String errorMessage = String.format(CANNOT_LOCATE_JSONPATH_ERROR_MESSAGE, jPath, json);
         LOGGER.info(errorMessage, jPath, json);
-        return new ProcessingException(errorMessage, e);
+        return new CustomException(CustomException.Fault.VALIDATION_FAILED, errorMessage, e);
     }
 }
