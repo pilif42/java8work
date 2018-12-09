@@ -20,3 +20,13 @@ java -jar java8work-1.0-SNAPSHOT.jar
 ##################################################
 curl http://localhost:8151/tester/ -v -X GET
 200
+
+curl -d '{"name":"Lionel", "favouriteColor":"blaugrana", "favouriteNumber":10}' -H "Content-Type: application/json" -X POST http://localhost:8151/tester/123e4567-e89b-42d3-a456-556642440000/users
+
+
+##################################################
+# Avro section
+##################################################
+- dependency and plugin were added to the pom.xml
+- .avsc file created under src/main/avro
+- mvn clean install --> generates classes under src/main/java/example.avro

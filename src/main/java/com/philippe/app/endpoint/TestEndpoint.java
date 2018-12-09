@@ -1,19 +1,33 @@
 package com.philippe.app.endpoint;
 
+import com.philippe.app.domain.User;
+import com.philippe.app.representation.UserDTO;
+import com.philippe.app.exception.ProcessingException;
+import com.philippe.app.representation.CreatedUserDTO;
 import com.philippe.app.service.dates.CalendarService;
 import com.philippe.app.service.flatmaps.TestService;
+import com.philippe.app.service.kafka.Publisher;
 import com.philippe.app.service.maths.FormulaService;
 import com.philippe.app.service.persons.CollectorsService;
 import com.philippe.app.service.strings.SortingService;
 import lombok.extern.slf4j.Slf4j;
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/tester", produces = "application/json")
@@ -35,6 +49,13 @@ public class TestEndpoint {
   @Autowired
   private TestService testService;
 
+  @Qualifier("beanMapper")
+  @Autowired
+  private MapperFacade mapperFacade;
+
+  @Autowired
+  private Publisher publisher;
+
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public final ResponseEntity theGet() {
     log.debug("Entering tester ...");
@@ -54,5 +75,26 @@ public class TestEndpoint {
     testService.myExperiments();
 
     return ResponseEntity.ok().build();
+  }
+
+  @RequestMapping(value = "/{userId}/users", method = RequestMethod.POST)
+  public final ResponseEntity<CreatedUserDTO> createUser(@PathVariable("userId") final UUID userId,
+                                                         @RequestBody @Valid final UserDTO userDTO,
+                                                         BindingResult bindingResult) {
+    log.debug("Entering createUser with userId {} and requestObject {}", userId, userDTO);
+
+    if (bindingResult.hasErrors()) {
+      throw new ProcessingException("Binding errors for user creation: " + bindingResult);
+    }
+
+    final User user = mapperFacade.map(userDTO, User.class);
+
+    final CreatedUserDTO response = new CreatedUserDTO();
+    response.setId(userId);
+    response.setCreated(publisher.send(user));
+
+    String newResourceUrl = ServletUriComponentsBuilder
+            .fromCurrentRequest().buildAndExpand(response.getId()).toUri().toString();
+    return ResponseEntity.created(URI.create(newResourceUrl)).body(response);
   }
 }
