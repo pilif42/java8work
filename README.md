@@ -35,5 +35,5 @@ curl -d '{"name":"Lionel", "favouriteColor":"blaugrana", "favouriteNumber":10}' 
 
 
 TODO
-TODO in PublisherImpl
+TODO in PublisherImpl: use https://avro.apache.org/docs/1.8.2/gettingstartedjava.html
 TODO in TestEndpointTest
