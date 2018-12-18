@@ -19,7 +19,7 @@ public class AvroCodecServiceImpl<T extends SpecificRecord> implements AvroCodec
     private SpecificDatumReader<T> reader;
     private Class classOfT;
 
-    AvroCodecServiceImpl(T avroObject) {
+    public AvroCodecServiceImpl(T avroObject) {
         writer = new SpecificDatumWriter<>(avroObject.getSchema());
         reader = new SpecificDatumReader<>(avroObject.getSchema());
         this.classOfT = avroObject.getClass();

@@ -2,38 +2,40 @@ package com.philippe.app.service.kafka;
 
 import com.philippe.app.domain.User;
 import com.philippe.app.service.avro.AvroCodecService;
-import com.philippe.app.service.avro.AvroCodecServiceFactory;
-import com.philippe.app.service.avro.AvroCodecServicePool;
+import lombok.extern.slf4j.Slf4j;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class PublisherImpl implements Publisher {
 
     @Qualifier("beanMapper")
     @Autowired
     private MapperFacade mapperFacade;
 
+    @Autowired
+    private AvroCodecService<example.avro.User> avroCodecServiceForUsers;
+
     @Override
     public boolean send(final User user) {
         final example.avro.User avroUser = mapperFacade.map(user, example.avro.User.class);
 
-        AvroCodecServiceFactory<example.avro.User> factoryForUsers = new AvroCodecServiceFactory<>(new example.avro.User());
-        AvroCodecServicePool<example.avro.User> poolForUsers = new AvroCodecServicePool<>(factoryForUsers);
-        poolForUsers.setMaxTotal(10);
+        boolean isEncoded = false;
 
-        boolean isEncoded = true;
-
+        byte[] byteArray = null;
         try {
-            AvroCodecService<example.avro.User> avroCodecUtil = poolForUsers.borrowObject();
-            avroCodecUtil.encode(avroUser);
+            byteArray = avroCodecServiceForUsers.encode(avroUser);
         } catch (Exception ex) {
+            // TODO We come here at the moment as id is null
+            log.debug("exception is {}", ex);
         }
 
-        // TODO Publish
+        log.debug("byteArray is {}", byteArray);
+        // TODO Publish the byteArray to Kafka
 
-        return true;
+        return isEncoded;
     }
 }
