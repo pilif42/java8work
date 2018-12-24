@@ -88,13 +88,12 @@ public class TestEndpoint {
     }
 
     final User user = mapperFacade.map(userDTO, User.class);
+    user.setId(userId);
 
     final CreatedUserDTO response = new CreatedUserDTO();
-    response.setId(userId);
     response.setCreated(publisher.send(user));
 
-    String newResourceUrl = ServletUriComponentsBuilder
-            .fromCurrentRequest().buildAndExpand(response.getId()).toUri().toString();
+    final String newResourceUrl = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand(response.getId()).toUri().toString();
     return ResponseEntity.created(URI.create(newResourceUrl)).body(response);
   }
 }

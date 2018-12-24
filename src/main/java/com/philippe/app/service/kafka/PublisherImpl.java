@@ -22,6 +22,7 @@ public class PublisherImpl implements Publisher {
     @Override
     public boolean send(final User user) {
         final example.avro.User avroUser = mapperFacade.map(user, example.avro.User.class);
+        // TODO id is mapped to empty string
 
         boolean isEncoded = false;
 
