@@ -22,7 +22,7 @@ curl http://localhost:8151/tester/ -v -X GET
 200
 
 curl -d '{"name":"Lionel", "favouriteColor":"blaugrana", "favouriteNumber":10}' -H "Content-Type: application/json" -X POST http://localhost:8151/tester/123e4567-e89b-42d3-a456-556642440000/users
-200 {"id":"123e4567-e89b-42d3-a456-556642440000","created":false}
+200 {"id":"123e4567-e89b-42d3-a456-556642440000","created":true}
 
 
 ##################################################
@@ -35,5 +35,6 @@ curl -d '{"name":"Lionel", "favouriteColor":"blaugrana", "favouriteNumber":10}' 
 
 
 TODO
+TODO in pom.xml : multiple exclusions of org.slf4j. Can we have just one like in gradle?
 TODO in PublisherImpl
 TODO in TestEndpointTest

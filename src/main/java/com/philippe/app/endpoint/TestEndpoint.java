@@ -91,6 +91,7 @@ public class TestEndpoint {
     user.setId(userId);
 
     final CreatedUserDTO response = new CreatedUserDTO();
+    response.setId(userId);
     response.setCreated(publisher.send(user));
 
     final String newResourceUrl = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand(response.getId()).toUri().toString();

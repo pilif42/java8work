@@ -32,6 +32,7 @@ public class PublisherImpl implements Publisher {
         byte[] byteArray = null;
         try {
             byteArray = avroCodecServiceForUsers.encode(avroUser);
+            isEncoded = true;
         } catch (Exception ex) {
             log.debug("exception is {}", ex);
         }
