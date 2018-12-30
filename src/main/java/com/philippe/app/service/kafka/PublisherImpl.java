@@ -2,27 +2,30 @@ package com.philippe.app.service.kafka;
 
 import com.philippe.app.domain.User;
 import com.philippe.app.service.avro.AvroCodecService;
+import com.philippe.app.service.mapper.CustomMapperService;
 import lombok.extern.slf4j.Slf4j;
-import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
 public class PublisherImpl implements Publisher {
 
-    @Qualifier("beanMapper")
+    // TODO The Orika mapper would not map correctly the String id from app.domain.User to the UUID id of example.avro.User avroUser
+    // TODO So we went for a CustomMapperService.
+//    @Qualifier("beanMapper")
+//    @Autowired
+//    private MapperFacade mapperFacade;
+
     @Autowired
-    private MapperFacade mapperFacade;
+    private CustomMapperService customMapperService;
 
     @Autowired
     private AvroCodecService<example.avro.User> avroCodecServiceForUsers;
 
     @Override
     public boolean send(final User user) {
-        final example.avro.User avroUser = mapperFacade.map(user, example.avro.User.class);
-        // TODO id is mapped to empty string
+        final example.avro.User avroUser = customMapperService.convert(user);
 
         boolean isEncoded = false;
 
@@ -30,7 +33,6 @@ public class PublisherImpl implements Publisher {
         try {
             byteArray = avroCodecServiceForUsers.encode(avroUser);
         } catch (Exception ex) {
-            // TODO We come here at the moment as id is null
             log.debug("exception is {}", ex);
         }
 
