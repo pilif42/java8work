@@ -35,6 +35,5 @@ curl -d '{"name":"Lionel", "favouriteColor":"blaugrana", "favouriteNumber":10}' 
 
 
 TODO
-TODO in pom.xml : multiple exclusions of org.slf4j. Can we have just one like in gradle?
 TODO in PublisherImpl
 TODO in TestEndpointTest
