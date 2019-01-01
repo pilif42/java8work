@@ -22,8 +22,9 @@ public class CollectorsServiceImpl implements CollectorsService {
         .collect(Collectors.toList());
     log.debug("filteredList is {}", filteredList);
 
-
-    Comparator<Person> byPersonAgeAscending = (e1, e2) -> Integer.compare(e1.getAge(), e2.getAge());
+// Old way on the next line
+//    Comparator<Person> byPersonAgeAscending = (e1, e2) -> Integer.compare(e1.getAge(), e2.getAge());
+    Comparator<Person> byPersonAgeAscending = Comparator.comparingInt(Person::getAge);
     List<Person> sortedList = personsList.stream().sorted(byPersonAgeAscending).collect(Collectors.toList());
     log.debug("sorted List = {}", sortedList);
 
