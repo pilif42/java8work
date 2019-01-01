@@ -11,4 +11,6 @@ public interface FormulaService {
   }
 
   List<Integer> filterList(List<Integer> inputList);
+
+  long fibonacciOf(int a);
 }

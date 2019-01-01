@@ -17,20 +17,33 @@ import static org.apache.commons.io.filefilter.FileFilterUtils.toList;
 @Slf4j
 public class FormulaServiceImpl implements FormulaService {
 
-  private static final Predicate<Integer> lesserThan = i -> (i < 18);
+    private static final Predicate<Integer> lesserThan = i -> (i < 18);
 
-  @Override
-  public double calculate(int a) {
-    log.debug("Entrance of calculate with a = {}...", a);
-    return sqrt(a * 100);
-  }
-
-  @Override
-  public List<Integer> filterList(List<Integer> inputList) {
-    List<Integer> filteredList = new ArrayList<>();
-    if (!CollectionUtils.isEmpty(inputList)) {
-      filteredList = inputList.stream().filter(lesserThan).collect(toList());
+    @Override
+    public double calculate(int a) {
+        log.debug("Entrance of calculate with a = {}...", a);
+        return sqrt(a * 100);
     }
-    return filteredList;
-  }
+
+    @Override
+    public List<Integer> filterList(List<Integer> inputList) {
+        List<Integer> filteredList = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(inputList)) {
+            filteredList = inputList.stream().filter(lesserThan).collect(toList());
+        }
+        return filteredList;
+    }
+
+    @Override
+    public long fibonacciOf(int a) {
+        long result;
+        if (a == 0) {
+            result = 0;
+        } else if (a == 1) {
+            result = 1;
+        } else {
+            result = fibonacciOf(a - 1) + fibonacciOf(a - 2);
+        }
+        return result;
+    }
 }

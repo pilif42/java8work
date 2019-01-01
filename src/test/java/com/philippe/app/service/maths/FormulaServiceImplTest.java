@@ -26,4 +26,13 @@ public class FormulaServiceImplTest {
         assertEquals(2, filteredList.size());
         assertTrue(filteredList.containsAll(Arrays.asList(10, 13)));
     }
+
+    @Test
+    public void fibonacciOf() {
+        assertEquals(0, formulaService.fibonacciOf(0));
+        assertEquals(1, formulaService.fibonacciOf(1));
+        assertEquals(1, formulaService.fibonacciOf(2));
+        assertEquals(2, formulaService.fibonacciOf(3));
+        assertEquals(317811, formulaService.fibonacciOf(28));
+    }
 }
