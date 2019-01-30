@@ -30,10 +30,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TestEndpointTest {
+public class BlockingEndpointTest {
 
     @InjectMocks
-    private TestEndpoint testEndpoint;
+    private BlockingEndpoint testEndpoint;
 
     @Mock
     private Publisher publisher;
@@ -69,7 +69,7 @@ public class TestEndpointTest {
 
         // Then
         actions.andExpect(status().isCreated());
-        actions.andExpect(handler().handlerType(TestEndpoint.class));
+        actions.andExpect(handler().handlerType(BlockingEndpoint.class));
         actions.andExpect(handler().methodName("createUser"));
         actions.andExpect(jsonPath("$.*", hasSize(2)));
 // TODO       actions.andExpect(jsonPath("$.id", is(USER_ID.toString())));
@@ -83,7 +83,7 @@ public class TestEndpointTest {
 //                USER_INVALID_JSON));
 //
 //        actions.andExpect(status().isBadRequest());
-//        actions.andExpect(handler().handlerType(TestEndpoint.class));
+//        actions.andExpect(handler().handlerType(BlockingEndpoint.class));
 //        actions.andExpect(handler().methodName("createUser"));
 //        actions.andExpect(jsonPath("$.error.code", is(CustomException.Fault.VALIDATION_FAILED.name())));
 //        actions.andExpect(jsonPath("$.error.message", isA(String.class)));

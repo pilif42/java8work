@@ -32,7 +32,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/tester", produces = "application/json")
 @Slf4j
-public class TestEndpoint {
+public class BlockingEndpoint {
 
   @Autowired
   private CalendarService calendarService;
