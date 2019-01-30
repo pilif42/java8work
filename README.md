@@ -24,6 +24,9 @@ curl http://localhost:8151/tester/ -v -X GET
 curl -d '{"name":"Lionel", "favouriteColor":"blaugrana", "favouriteNumber":10}' -H "Content-Type: application/json" -X POST http://localhost:8151/tester/123e4567-e89b-42d3-a456-556642440000/users
 200 {"id":"123e4567-e89b-42d3-a456-556642440000","created":true}
 
+The non-blocking endpoint
+curl http://localhost:8151/async-deferredresult/ -v -X GET
+
 
 ##################################################
 # Avro section
@@ -32,6 +35,8 @@ curl -d '{"name":"Lionel", "favouriteColor":"blaugrana", "favouriteNumber":10}' 
 - .avsc file created under src/main/avro
 - mvn clean install --> generates classes under src/main/java/example.avro
 
+
+TODO Write a client consuming the non blocking endpoint. And implement callbacks as described at https://www.baeldung.com/spring-deferred-result
 
 
 TODO Get rid of SLF4J: Class path contains multiple SLF4J bindings.
@@ -48,6 +53,8 @@ TODO Get rid of SLF4J: Class path contains multiple SLF4J bindings.
                  <scope>provided</scope>
              </dependency>
 
+
 TODO in PublisherImpl
+
 
 TODO in TestEndpointTest
