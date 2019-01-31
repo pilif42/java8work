@@ -36,7 +36,7 @@ curl http://localhost:8151/async-deferredresult/ -v -X GET
 - mvn clean install --> generates classes under src/main/java/example.avro
 
 
-TODO Write a client consuming the non blocking endpoint. And implement callbacks as described at https://www.baeldung.com/spring-deferred-result
+TODO Write a client consuming the non blocking endpoint. See TODO in CallingServiceImpl.
 
 
 TODO Get rid of SLF4J: Class path contains multiple SLF4J bindings.
