@@ -36,6 +36,9 @@ curl http://localhost:8151/async-deferredresult/ -v -X GET
 - mvn clean install --> generates classes under src/main/java/example.avro
 
 
+TODO In NonBlockingEndpoint
+
+
 TODO Write a client consuming the non blocking endpoint. See TODO in CallingServiceImpl.
 
 

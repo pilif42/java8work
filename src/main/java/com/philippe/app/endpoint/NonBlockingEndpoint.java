@@ -9,9 +9,11 @@ import org.springframework.web.context.request.async.DeferredResult;
 
 import java.util.concurrent.ForkJoinPool;
 
+import static java.lang.String.format;
+
 @RestController
 @Slf4j
-public class NonBlockingEndpoint {
+public class NonBlockingEndpoint {  // TODO To be unit tested
 
     private final static long TIME_OUT_IN_MILLISECONDS = 500l;
 
@@ -20,11 +22,17 @@ public class NonBlockingEndpoint {
         log.debug("Received async-deferredresult request");
 
         DeferredResult<ResponseEntity<?>> deferredResult = new DeferredResult<>(TIME_OUT_IN_MILLISECONDS);
+        // TODO onError only available since 5.0. We are running 4.3.12 :(
+//        deferredResult.onError((Throwable t) -> {
+//            final String errMsg = format("An error occurred: %s", t.getMessage());
+//            deferredResult.setErrorResult(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errMsg));
+//            log.debug("errMsg", t);
+//        });
         deferredResult.onTimeout(() -> {
-            deferredResult.setErrorResult(ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).body("Request timeout occurred."));
-            log.info("Processing timed out.");
+            deferredResult.setErrorResult(ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).body("Request timeout occurred.")); // TODO Verify u can see this body when testing.
+            log.debug("Processing timed out.");
         });
-        deferredResult.onCompletion(() -> log.info("Processing complete."));
+        deferredResult.onCompletion(() -> log.debug("Processing complete."));
 
         ForkJoinPool.commonPool().submit(() -> {
             log.debug("Processing in a separate thread");
