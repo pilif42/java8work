@@ -1,0 +1,21 @@
+{
+    "namespace": "example.avro.ack.publish",
+    "type":     "record",
+    "name":     "PublishAckContext",
+    "fields": [
+        {"name": "version", "type": "string", "default": "1.0.0"},
+        {"name": "publishTime", "type": "string"},
+        {"name": "ack", "type": {
+                   "type": "record",
+                 "name": "AckContext",
+                 "fields": [
+                 {"name": "consumerId", "type": "string"},
+                 {"name": "windowId", "type": "string"},
+                 {"name": "shardId", "type": "string"},
+                 {"name": "processedIds", "type": {"type": "array", "items": "string"}},
+                 {"name": "failedIds", "type": {"type": "array", "items": "string"}}
+                 ]
+                 }
+        }
+    ]
+}
