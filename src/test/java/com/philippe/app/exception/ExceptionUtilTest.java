@@ -1,6 +1,5 @@
 package com.philippe.app.exception;
 
-import org.apache.avro.generic.GenericData;
 import org.junit.Test;
 
 import java.util.ArrayList;
