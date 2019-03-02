@@ -34,6 +34,12 @@ curl http://localhost:8151/async-deferredresult/ -v -X GET
 - dependency and plugin were added to the pom.xml
 - .avsc file created under src/main/avro
 - mvn clean install --> generates classes under src/main/java/example.avro
+- Problem to solve:
+        - I publish events to a Kafka topic with Publisher Api v1.0 which uses Avro-codec-lib v1.0 containing Avro Event schema v1.0. I can consume them with Consumer Api v1.0 which uses Avro-codec-lib v1.0.
+        - I then do a new PROD release v2.0 for all components but I still want to be able to consume events that were published with v1.0.
+        - Solution:
+                - It is OK to add fields to the v2.0 Avro schema as long as you give a default value to these fields.
+                - However, you can’t remove fields as you would not be able to decode byte[] which are on the Kafka topic and which were published with v1.0.
 
 
 TODO In NonBlockingEndpoint
