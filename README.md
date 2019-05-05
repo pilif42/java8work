@@ -42,6 +42,57 @@ curl http://localhost:8151/async-deferredresult/ -v -X GET
                 - However, you can’t remove fields as you would not be able to decode byte[] which are on the Kafka topic and which were published with v1.0.
 
 
+##################################################
+# Spring Admin Server section
+##################################################
+Let's say that you have a Spring Boot application. You would like to register it automatically with a Spring Admin Server at start-up so you can monitor its status.
+
+
+Add the dependencies below:
+compile('org.jolokia:jolokia-core:1.6.0')
+compile('de.codecentric:spring-boot-admin-starter-client:1.5.7') {
+   exclude group: 'org.jolokia'
+}
+
+
+Define an application.yml with:
+logging:
+  level:
+    com.example.demo: DEBUG
+    org.springframework: WARN
+    org.springframework.cloud.client.discovery: DEBUG
+  profile: DEV
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: https://someserver.com/eureka
+
+management:
+  security.enabled: false
+  context-path: /actuator
+
+# To register itself with the admin server.
+spring:
+  boot:
+    admin:
+      url: http://localhost:8085
+      username: user
+      password: pass
+
+info:
+  name: ${name}
+  version: ${version}
+  origin: ${githubRepo}
+  branch: master
+  built: 2018-12-13 06:43:19.77
+  
+
 TODO In NonBlockingEndpoint
 
 
