@@ -6,8 +6,12 @@ import com.philippe.app.service.flatmaps.TestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.io.InvalidClassException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Service
@@ -46,6 +50,21 @@ public class TestServiceImpl implements TestService {
      *      -   Stream<List<Object>>	-> flatMap ->	Stream<Object>
      */
     foos.stream().flatMap(f -> f.getBars().stream()).forEach(b -> log.debug(b.getName()));
-  }
 
+    /**
+     * An example to filter items in a set.
+     */
+    final Set<Exception> exceptionSet = new HashSet<>();
+    exceptionSet.add(new InvalidClassException("ClassA does not exist."));
+    exceptionSet.add(new NullPointerException("To vary pleasures."));
+    exceptionSet.add(new InvalidClassException("Something went wrong."));
+    exceptionSet.add(new InvalidClassException("ClassB does not exist."));
+
+
+    final List<InvalidClassException> invalidClassExceptionList = exceptionSet.stream()
+            .filter(e -> e instanceof InvalidClassException)
+            .map(e -> (InvalidClassException)e)
+            .filter(e -> e.getMessage().contains("does not exist."))
+            .collect(Collectors.toList());
+  }
 }
