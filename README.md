@@ -91,7 +91,34 @@ info:
   origin: ${githubRepo}
   branch: master
   built: 2018-12-13 06:43:19.77
-  
+
+
+TODO: publish notifications to the Kafka server.
+               - a notification contains:
+                        - a guid
+                        - a type: make it an Enum (Parcel, Letter)
+                        - a reason: text (Not delivered in time, etc.)
+                        - guid of the responsible person
+                        - do we need a time?
+
+
+TODO: publish events to the Kafka server.
+               - an event contains:
+                         - a guid
+                         - a description: make it an enum (MailDelivered, MailReturned, etc.)
+                         - a time: when the event occurred (we may not need it as this would be the time at which the event was published)
+                         - a related-item guid: the parcel guid.
+                         - a related-item type: Parcel if delivery scenario.
+                         - an actor-guid: the delivery man guid. No need to give a type as this will always be a responsible person.
+
+
+TODO: publish itemsToDeliver to the Kafka server.
+                - an item contains:
+                        - a guid
+                        - a type: Parcel, Letter
+                        - a target delivery date/time
+                        - a deliverer: guid of the delivery man
+
 
 TODO In NonBlockingEndpoint
 
