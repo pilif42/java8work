@@ -94,12 +94,6 @@ info:
 
 
 TODO: publish notifications to the Kafka server.
-               - a notification contains:
-                        - a guid
-                        - a type: make it an Enum (Parcel, Letter)
-                        - a reason: text (Not delivered in time, etc.)
-                        - guid of the responsible person
-                        - do we need a time?
 
 
 TODO: publish events to the Kafka server.

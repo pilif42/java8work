@@ -1,0 +1,14 @@
+{   "namespace": "example.avro.sparkpoc",
+    "type":     "record",
+    "name":     "Notification",
+    "fields": [
+        {"name": "version", "type": "string", "default": "1.0.0"},
+        {"name": "publishTime", "type": "string"},
+        {"name": "itemGuid", "type": "string"},
+        {"name": "itemType", "type": {"name": "ItemType", "type": "enum",
+                                       "default": "Letter",
+                                       "symbols": ["Letter","Parcel"]}},
+        {"name": "reason", "type": "string"},
+        {"name": "responsiblePersonGuid", "type": "string"}
+   ]
+}
