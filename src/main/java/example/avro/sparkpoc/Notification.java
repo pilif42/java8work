@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Notification extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 5450294875848655444L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Notification\",\"namespace\":\"example.avro.sparkpoc\",\"fields\":[{\"name\":\"version\",\"type\":\"string\",\"default\":\"1.0.0\"},{\"name\":\"publishTime\",\"type\":\"string\"},{\"name\":\"itemGuid\",\"type\":\"string\"},{\"name\":\"itemType\",\"type\":{\"type\":\"enum\",\"name\":\"ItemType\",\"symbols\":[\"Letter\",\"Parcel\"],\"default\":\"Letter\"}},{\"name\":\"reason\",\"type\":\"string\"},{\"name\":\"responsiblePersonGuid\",\"type\":\"string\"}]}");
+  private static final long serialVersionUID = -4323615343463271109L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Notification\",\"namespace\":\"example.avro.sparkpoc\",\"fields\":[{\"name\":\"version\",\"type\":\"string\",\"default\":\"1.0.0\"},{\"name\":\"publishTime\",\"type\":\"string\"},{\"name\":\"id\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"item\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"Item\",\"fields\":[{\"name\":\"guid\",\"type\":\"string\"},{\"name\":\"type\",\"type\":{\"type\":\"enum\",\"name\":\"ItemType\",\"symbols\":[\"Letter\",\"Parcel\"],\"default\":\"Letter\"}}]}]},{\"name\":\"outcome\",\"type\":{\"type\":\"enum\",\"name\":\"Outcome\",\"symbols\":[\"Delivered\",\"Returned\"],\"default\":\"Delivered\"}},{\"name\":\"deviceGuid\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -53,10 +53,10 @@ public class Notification extends org.apache.avro.specific.SpecificRecordBase im
 
   @Deprecated public java.lang.CharSequence version;
   @Deprecated public java.lang.CharSequence publishTime;
-  @Deprecated public java.lang.CharSequence itemGuid;
-  @Deprecated public example.avro.sparkpoc.ItemType itemType;
-  @Deprecated public java.lang.CharSequence reason;
-  @Deprecated public java.lang.CharSequence responsiblePersonGuid;
+  @Deprecated public java.lang.CharSequence id;
+  @Deprecated public example.avro.sparkpoc.Item item;
+  @Deprecated public example.avro.sparkpoc.Outcome outcome;
+  @Deprecated public java.lang.CharSequence deviceGuid;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -69,18 +69,18 @@ public class Notification extends org.apache.avro.specific.SpecificRecordBase im
    * All-args constructor.
    * @param version The new value for version
    * @param publishTime The new value for publishTime
-   * @param itemGuid The new value for itemGuid
-   * @param itemType The new value for itemType
-   * @param reason The new value for reason
-   * @param responsiblePersonGuid The new value for responsiblePersonGuid
+   * @param id The new value for id
+   * @param item The new value for item
+   * @param outcome The new value for outcome
+   * @param deviceGuid The new value for deviceGuid
    */
-  public Notification(java.lang.CharSequence version, java.lang.CharSequence publishTime, java.lang.CharSequence itemGuid, example.avro.sparkpoc.ItemType itemType, java.lang.CharSequence reason, java.lang.CharSequence responsiblePersonGuid) {
+  public Notification(java.lang.CharSequence version, java.lang.CharSequence publishTime, java.lang.CharSequence id, example.avro.sparkpoc.Item item, example.avro.sparkpoc.Outcome outcome, java.lang.CharSequence deviceGuid) {
     this.version = version;
     this.publishTime = publishTime;
-    this.itemGuid = itemGuid;
-    this.itemType = itemType;
-    this.reason = reason;
-    this.responsiblePersonGuid = responsiblePersonGuid;
+    this.id = id;
+    this.item = item;
+    this.outcome = outcome;
+    this.deviceGuid = deviceGuid;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -89,12 +89,33 @@ public class Notification extends org.apache.avro.specific.SpecificRecordBase im
     switch (field$) {
     case 0: return version;
     case 1: return publishTime;
-    case 2: return itemGuid;
-    case 3: return itemType;
-    case 4: return reason;
-    case 5: return responsiblePersonGuid;
+    case 2: return id;
+    case 3: return item;
+    case 4: return outcome;
+    case 5: return deviceGuid;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
+  }
+
+  protected static final org.apache.avro.data.TimeConversions.DateConversion DATE_CONVERSION = new org.apache.avro.data.TimeConversions.DateConversion();
+  protected static final org.apache.avro.data.TimeConversions.TimeConversion TIME_CONVERSION = new org.apache.avro.data.TimeConversions.TimeConversion();
+  protected static final org.apache.avro.data.TimeConversions.TimestampConversion TIMESTAMP_CONVERSION = new org.apache.avro.data.TimeConversions.TimestampConversion();
+  protected static final org.apache.avro.Conversions.DecimalConversion DECIMAL_CONVERSION = new org.apache.avro.Conversions.DecimalConversion();
+
+  private static final org.apache.avro.Conversion<?>[] conversions =
+      new org.apache.avro.Conversion<?>[] {
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+  };
+
+  @Override
+  public org.apache.avro.Conversion<?> getConversion(int field) {
+    return conversions[field];
   }
 
   // Used by DatumReader.  Applications should not call.
@@ -103,10 +124,10 @@ public class Notification extends org.apache.avro.specific.SpecificRecordBase im
     switch (field$) {
     case 0: version = (java.lang.CharSequence)value$; break;
     case 1: publishTime = (java.lang.CharSequence)value$; break;
-    case 2: itemGuid = (java.lang.CharSequence)value$; break;
-    case 3: itemType = (example.avro.sparkpoc.ItemType)value$; break;
-    case 4: reason = (java.lang.CharSequence)value$; break;
-    case 5: responsiblePersonGuid = (java.lang.CharSequence)value$; break;
+    case 2: id = (java.lang.CharSequence)value$; break;
+    case 3: item = (example.avro.sparkpoc.Item)value$; break;
+    case 4: outcome = (example.avro.sparkpoc.Outcome)value$; break;
+    case 5: deviceGuid = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -144,67 +165,67 @@ public class Notification extends org.apache.avro.specific.SpecificRecordBase im
   }
 
   /**
-   * Gets the value of the 'itemGuid' field.
-   * @return The value of the 'itemGuid' field.
+   * Gets the value of the 'id' field.
+   * @return The value of the 'id' field.
    */
-  public java.lang.CharSequence getItemGuid() {
-    return itemGuid;
+  public java.lang.CharSequence getId() {
+    return id;
   }
 
   /**
-   * Sets the value of the 'itemGuid' field.
+   * Sets the value of the 'id' field.
    * @param value the value to set.
    */
-  public void setItemGuid(java.lang.CharSequence value) {
-    this.itemGuid = value;
+  public void setId(java.lang.CharSequence value) {
+    this.id = value;
   }
 
   /**
-   * Gets the value of the 'itemType' field.
-   * @return The value of the 'itemType' field.
+   * Gets the value of the 'item' field.
+   * @return The value of the 'item' field.
    */
-  public example.avro.sparkpoc.ItemType getItemType() {
-    return itemType;
+  public example.avro.sparkpoc.Item getItem() {
+    return item;
   }
 
   /**
-   * Sets the value of the 'itemType' field.
+   * Sets the value of the 'item' field.
    * @param value the value to set.
    */
-  public void setItemType(example.avro.sparkpoc.ItemType value) {
-    this.itemType = value;
+  public void setItem(example.avro.sparkpoc.Item value) {
+    this.item = value;
   }
 
   /**
-   * Gets the value of the 'reason' field.
-   * @return The value of the 'reason' field.
+   * Gets the value of the 'outcome' field.
+   * @return The value of the 'outcome' field.
    */
-  public java.lang.CharSequence getReason() {
-    return reason;
+  public example.avro.sparkpoc.Outcome getOutcome() {
+    return outcome;
   }
 
   /**
-   * Sets the value of the 'reason' field.
+   * Sets the value of the 'outcome' field.
    * @param value the value to set.
    */
-  public void setReason(java.lang.CharSequence value) {
-    this.reason = value;
+  public void setOutcome(example.avro.sparkpoc.Outcome value) {
+    this.outcome = value;
   }
 
   /**
-   * Gets the value of the 'responsiblePersonGuid' field.
-   * @return The value of the 'responsiblePersonGuid' field.
+   * Gets the value of the 'deviceGuid' field.
+   * @return The value of the 'deviceGuid' field.
    */
-  public java.lang.CharSequence getResponsiblePersonGuid() {
-    return responsiblePersonGuid;
+  public java.lang.CharSequence getDeviceGuid() {
+    return deviceGuid;
   }
 
   /**
-   * Sets the value of the 'responsiblePersonGuid' field.
+   * Sets the value of the 'deviceGuid' field.
    * @param value the value to set.
    */
-  public void setResponsiblePersonGuid(java.lang.CharSequence value) {
-    this.responsiblePersonGuid = value;
+  public void setDeviceGuid(java.lang.CharSequence value) {
+    this.deviceGuid = value;
   }
 
   /**
@@ -241,10 +262,11 @@ public class Notification extends org.apache.avro.specific.SpecificRecordBase im
 
     private java.lang.CharSequence version;
     private java.lang.CharSequence publishTime;
-    private java.lang.CharSequence itemGuid;
-    private example.avro.sparkpoc.ItemType itemType;
-    private java.lang.CharSequence reason;
-    private java.lang.CharSequence responsiblePersonGuid;
+    private java.lang.CharSequence id;
+    private example.avro.sparkpoc.Item item;
+    private example.avro.sparkpoc.Item.Builder itemBuilder;
+    private example.avro.sparkpoc.Outcome outcome;
+    private java.lang.CharSequence deviceGuid;
 
     /** Creates a new Builder */
     private Builder() {
@@ -265,20 +287,23 @@ public class Notification extends org.apache.avro.specific.SpecificRecordBase im
         this.publishTime = data().deepCopy(fields()[1].schema(), other.publishTime);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.itemGuid)) {
-        this.itemGuid = data().deepCopy(fields()[2].schema(), other.itemGuid);
+      if (isValidValue(fields()[2], other.id)) {
+        this.id = data().deepCopy(fields()[2].schema(), other.id);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.itemType)) {
-        this.itemType = data().deepCopy(fields()[3].schema(), other.itemType);
+      if (isValidValue(fields()[3], other.item)) {
+        this.item = data().deepCopy(fields()[3].schema(), other.item);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.reason)) {
-        this.reason = data().deepCopy(fields()[4].schema(), other.reason);
+      if (other.hasItemBuilder()) {
+        this.itemBuilder = example.avro.sparkpoc.Item.newBuilder(other.getItemBuilder());
+      }
+      if (isValidValue(fields()[4], other.outcome)) {
+        this.outcome = data().deepCopy(fields()[4].schema(), other.outcome);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.responsiblePersonGuid)) {
-        this.responsiblePersonGuid = data().deepCopy(fields()[5].schema(), other.responsiblePersonGuid);
+      if (isValidValue(fields()[5], other.deviceGuid)) {
+        this.deviceGuid = data().deepCopy(fields()[5].schema(), other.deviceGuid);
         fieldSetFlags()[5] = true;
       }
     }
@@ -297,20 +322,21 @@ public class Notification extends org.apache.avro.specific.SpecificRecordBase im
         this.publishTime = data().deepCopy(fields()[1].schema(), other.publishTime);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.itemGuid)) {
-        this.itemGuid = data().deepCopy(fields()[2].schema(), other.itemGuid);
+      if (isValidValue(fields()[2], other.id)) {
+        this.id = data().deepCopy(fields()[2].schema(), other.id);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.itemType)) {
-        this.itemType = data().deepCopy(fields()[3].schema(), other.itemType);
+      if (isValidValue(fields()[3], other.item)) {
+        this.item = data().deepCopy(fields()[3].schema(), other.item);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.reason)) {
-        this.reason = data().deepCopy(fields()[4].schema(), other.reason);
+      this.itemBuilder = null;
+      if (isValidValue(fields()[4], other.outcome)) {
+        this.outcome = data().deepCopy(fields()[4].schema(), other.outcome);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.responsiblePersonGuid)) {
-        this.responsiblePersonGuid = data().deepCopy(fields()[5].schema(), other.responsiblePersonGuid);
+      if (isValidValue(fields()[5], other.deviceGuid)) {
+        this.deviceGuid = data().deepCopy(fields()[5].schema(), other.deviceGuid);
         fieldSetFlags()[5] = true;
       }
     }
@@ -394,157 +420,192 @@ public class Notification extends org.apache.avro.specific.SpecificRecordBase im
     }
 
     /**
-      * Gets the value of the 'itemGuid' field.
+      * Gets the value of the 'id' field.
       * @return The value.
       */
-    public java.lang.CharSequence getItemGuid() {
-      return itemGuid;
+    public java.lang.CharSequence getId() {
+      return id;
     }
 
     /**
-      * Sets the value of the 'itemGuid' field.
-      * @param value The value of 'itemGuid'.
+      * Sets the value of the 'id' field.
+      * @param value The value of 'id'.
       * @return This builder.
       */
-    public example.avro.sparkpoc.Notification.Builder setItemGuid(java.lang.CharSequence value) {
+    public example.avro.sparkpoc.Notification.Builder setId(java.lang.CharSequence value) {
       validate(fields()[2], value);
-      this.itemGuid = value;
+      this.id = value;
       fieldSetFlags()[2] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'itemGuid' field has been set.
-      * @return True if the 'itemGuid' field has been set, false otherwise.
+      * Checks whether the 'id' field has been set.
+      * @return True if the 'id' field has been set, false otherwise.
       */
-    public boolean hasItemGuid() {
+    public boolean hasId() {
       return fieldSetFlags()[2];
     }
 
 
     /**
-      * Clears the value of the 'itemGuid' field.
+      * Clears the value of the 'id' field.
       * @return This builder.
       */
-    public example.avro.sparkpoc.Notification.Builder clearItemGuid() {
-      itemGuid = null;
+    public example.avro.sparkpoc.Notification.Builder clearId() {
+      id = null;
       fieldSetFlags()[2] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'itemType' field.
+      * Gets the value of the 'item' field.
       * @return The value.
       */
-    public example.avro.sparkpoc.ItemType getItemType() {
-      return itemType;
+    public example.avro.sparkpoc.Item getItem() {
+      return item;
     }
 
     /**
-      * Sets the value of the 'itemType' field.
-      * @param value The value of 'itemType'.
+      * Sets the value of the 'item' field.
+      * @param value The value of 'item'.
       * @return This builder.
       */
-    public example.avro.sparkpoc.Notification.Builder setItemType(example.avro.sparkpoc.ItemType value) {
+    public example.avro.sparkpoc.Notification.Builder setItem(example.avro.sparkpoc.Item value) {
       validate(fields()[3], value);
-      this.itemType = value;
+      this.itemBuilder = null;
+      this.item = value;
       fieldSetFlags()[3] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'itemType' field has been set.
-      * @return True if the 'itemType' field has been set, false otherwise.
+      * Checks whether the 'item' field has been set.
+      * @return True if the 'item' field has been set, false otherwise.
       */
-    public boolean hasItemType() {
+    public boolean hasItem() {
       return fieldSetFlags()[3];
     }
 
+    /**
+     * Gets the Builder instance for the 'item' field and creates one if it doesn't exist yet.
+     * @return This builder.
+     */
+    public example.avro.sparkpoc.Item.Builder getItemBuilder() {
+      if (itemBuilder == null) {
+        if (hasItem()) {
+          setItemBuilder(example.avro.sparkpoc.Item.newBuilder(item));
+        } else {
+          setItemBuilder(example.avro.sparkpoc.Item.newBuilder());
+        }
+      }
+      return itemBuilder;
+    }
 
     /**
-      * Clears the value of the 'itemType' field.
+     * Sets the Builder instance for the 'item' field
+     * @param value The builder instance that must be set.
+     * @return This builder.
+     */
+    public example.avro.sparkpoc.Notification.Builder setItemBuilder(example.avro.sparkpoc.Item.Builder value) {
+      clearItem();
+      itemBuilder = value;
+      return this;
+    }
+
+    /**
+     * Checks whether the 'item' field has an active Builder instance
+     * @return True if the 'item' field has an active Builder instance
+     */
+    public boolean hasItemBuilder() {
+      return itemBuilder != null;
+    }
+
+    /**
+      * Clears the value of the 'item' field.
       * @return This builder.
       */
-    public example.avro.sparkpoc.Notification.Builder clearItemType() {
-      itemType = null;
+    public example.avro.sparkpoc.Notification.Builder clearItem() {
+      item = null;
+      itemBuilder = null;
       fieldSetFlags()[3] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'reason' field.
+      * Gets the value of the 'outcome' field.
       * @return The value.
       */
-    public java.lang.CharSequence getReason() {
-      return reason;
+    public example.avro.sparkpoc.Outcome getOutcome() {
+      return outcome;
     }
 
     /**
-      * Sets the value of the 'reason' field.
-      * @param value The value of 'reason'.
+      * Sets the value of the 'outcome' field.
+      * @param value The value of 'outcome'.
       * @return This builder.
       */
-    public example.avro.sparkpoc.Notification.Builder setReason(java.lang.CharSequence value) {
+    public example.avro.sparkpoc.Notification.Builder setOutcome(example.avro.sparkpoc.Outcome value) {
       validate(fields()[4], value);
-      this.reason = value;
+      this.outcome = value;
       fieldSetFlags()[4] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'reason' field has been set.
-      * @return True if the 'reason' field has been set, false otherwise.
+      * Checks whether the 'outcome' field has been set.
+      * @return True if the 'outcome' field has been set, false otherwise.
       */
-    public boolean hasReason() {
+    public boolean hasOutcome() {
       return fieldSetFlags()[4];
     }
 
 
     /**
-      * Clears the value of the 'reason' field.
+      * Clears the value of the 'outcome' field.
       * @return This builder.
       */
-    public example.avro.sparkpoc.Notification.Builder clearReason() {
-      reason = null;
+    public example.avro.sparkpoc.Notification.Builder clearOutcome() {
+      outcome = null;
       fieldSetFlags()[4] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'responsiblePersonGuid' field.
+      * Gets the value of the 'deviceGuid' field.
       * @return The value.
       */
-    public java.lang.CharSequence getResponsiblePersonGuid() {
-      return responsiblePersonGuid;
+    public java.lang.CharSequence getDeviceGuid() {
+      return deviceGuid;
     }
 
     /**
-      * Sets the value of the 'responsiblePersonGuid' field.
-      * @param value The value of 'responsiblePersonGuid'.
+      * Sets the value of the 'deviceGuid' field.
+      * @param value The value of 'deviceGuid'.
       * @return This builder.
       */
-    public example.avro.sparkpoc.Notification.Builder setResponsiblePersonGuid(java.lang.CharSequence value) {
+    public example.avro.sparkpoc.Notification.Builder setDeviceGuid(java.lang.CharSequence value) {
       validate(fields()[5], value);
-      this.responsiblePersonGuid = value;
+      this.deviceGuid = value;
       fieldSetFlags()[5] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'responsiblePersonGuid' field has been set.
-      * @return True if the 'responsiblePersonGuid' field has been set, false otherwise.
+      * Checks whether the 'deviceGuid' field has been set.
+      * @return True if the 'deviceGuid' field has been set, false otherwise.
       */
-    public boolean hasResponsiblePersonGuid() {
+    public boolean hasDeviceGuid() {
       return fieldSetFlags()[5];
     }
 
 
     /**
-      * Clears the value of the 'responsiblePersonGuid' field.
+      * Clears the value of the 'deviceGuid' field.
       * @return This builder.
       */
-    public example.avro.sparkpoc.Notification.Builder clearResponsiblePersonGuid() {
-      responsiblePersonGuid = null;
+    public example.avro.sparkpoc.Notification.Builder clearDeviceGuid() {
+      deviceGuid = null;
       fieldSetFlags()[5] = false;
       return this;
     }
@@ -554,12 +615,16 @@ public class Notification extends org.apache.avro.specific.SpecificRecordBase im
     public Notification build() {
       try {
         Notification record = new Notification();
-        record.version = fieldSetFlags()[0] ? this.version : (java.lang.CharSequence) defaultValue(fields()[0]);
-        record.publishTime = fieldSetFlags()[1] ? this.publishTime : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.itemGuid = fieldSetFlags()[2] ? this.itemGuid : (java.lang.CharSequence) defaultValue(fields()[2]);
-        record.itemType = fieldSetFlags()[3] ? this.itemType : (example.avro.sparkpoc.ItemType) defaultValue(fields()[3]);
-        record.reason = fieldSetFlags()[4] ? this.reason : (java.lang.CharSequence) defaultValue(fields()[4]);
-        record.responsiblePersonGuid = fieldSetFlags()[5] ? this.responsiblePersonGuid : (java.lang.CharSequence) defaultValue(fields()[5]);
+        record.version = fieldSetFlags()[0] ? this.version : (java.lang.CharSequence) defaultValue(fields()[0], record.getConversion(0));
+        record.publishTime = fieldSetFlags()[1] ? this.publishTime : (java.lang.CharSequence) defaultValue(fields()[1], record.getConversion(1));
+        record.id = fieldSetFlags()[2] ? this.id : (java.lang.CharSequence) defaultValue(fields()[2], record.getConversion(2));
+        if (itemBuilder != null) {
+          record.item = this.itemBuilder.build();
+        } else {
+          record.item = fieldSetFlags()[3] ? this.item : (example.avro.sparkpoc.Item) defaultValue(fields()[3], record.getConversion(3));
+        }
+        record.outcome = fieldSetFlags()[4] ? this.outcome : (example.avro.sparkpoc.Outcome) defaultValue(fields()[4], record.getConversion(4));
+        record.deviceGuid = fieldSetFlags()[5] ? this.deviceGuid : (java.lang.CharSequence) defaultValue(fields()[5], record.getConversion(5));
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

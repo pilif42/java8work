@@ -1,6 +1,9 @@
 package com.philippe.app.endpoint;
 
+import com.philippe.app.domain.SparkPocNotification;
 import com.philippe.app.domain.User;
+import com.philippe.app.representation.CreatedSparkPocNotificationDTO;
+import com.philippe.app.representation.SparkPocNotificationDTO;
 import com.philippe.app.representation.UserDTO;
 import com.philippe.app.exception.CustomException;
 import com.philippe.app.representation.CreatedUserDTO;
@@ -93,6 +96,27 @@ public class BlockingEndpoint {
     final CreatedUserDTO response = new CreatedUserDTO();
     response.setId(userId);
     response.setCreated(publisher.send(user));
+
+    final String newResourceUrl = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand(response.getId()).toUri().toString();
+    return ResponseEntity.created(URI.create(newResourceUrl)).body(response);
+  }
+
+  @RequestMapping(value = "/{notificationId}/notifications", method = RequestMethod.POST)
+  public final ResponseEntity<CreatedSparkPocNotificationDTO> createNotification(@PathVariable("notificationId") final UUID notificationId,
+                                                                                 @RequestBody @Valid final SparkPocNotificationDTO sparkPocNotificationDTO,
+                                                                                 BindingResult bindingResult) throws CustomException {
+    log.debug("Entering createNotification with notificationId {} and requestObject {}", notificationId, sparkPocNotificationDTO);
+
+    if (bindingResult.hasErrors()) {
+      throw new CustomException(CustomException.Fault.VALIDATION_FAILED, "Binding errors for notification creation: " + bindingResult);
+    }
+
+    final SparkPocNotification notification = mapperFacade.map(sparkPocNotificationDTO, SparkPocNotification.class);
+    notification.setId(notificationId);
+
+    final CreatedSparkPocNotificationDTO response = new CreatedSparkPocNotificationDTO();
+    response.setId(notificationId);
+    response.setCreated(publisher.send(notification));
 
     final String newResourceUrl = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand(response.getId()).toUri().toString();
     return ResponseEntity.created(URI.create(newResourceUrl)).body(response);

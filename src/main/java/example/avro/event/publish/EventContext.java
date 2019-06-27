@@ -14,7 +14,7 @@ import org.apache.avro.message.SchemaStore;
 @org.apache.avro.specific.AvroGenerated
 public class EventContext extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = -2866357762096454947L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"EventContext\",\"namespace\":\"example.avro.event.publish\",\"fields\":[{\"name\":\"guid\",\"type\":[\"null\",\"string\"]},{\"name\":\"eventType\",\"type\":[\"null\",\"string\"]}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"EventContext\",\"namespace\":\"example.avro.event.publish\",\"fields\":[{\"name\":\"id\",\"type\":[\"null\",\"string\"]},{\"name\":\"eventType\",\"type\":[\"null\",\"string\"]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -63,7 +63,7 @@ public class EventContext extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * All-args constructor.
-   * @param guid The new value for guid
+   * @param guid The new value for id
    * @param eventType The new value for eventType
    */
   public EventContext(java.lang.CharSequence guid, java.lang.CharSequence eventType) {
@@ -92,15 +92,15 @@ public class EventContext extends org.apache.avro.specific.SpecificRecordBase im
   }
 
   /**
-   * Gets the value of the 'guid' field.
-   * @return The value of the 'guid' field.
+   * Gets the value of the 'id' field.
+   * @return The value of the 'id' field.
    */
   public java.lang.CharSequence getGuid() {
     return guid;
   }
 
   /**
-   * Sets the value of the 'guid' field.
+   * Sets the value of the 'id' field.
    * @param value the value to set.
    */
   public void setGuid(java.lang.CharSequence value) {
@@ -196,7 +196,7 @@ public class EventContext extends org.apache.avro.specific.SpecificRecordBase im
     }
 
     /**
-      * Gets the value of the 'guid' field.
+      * Gets the value of the 'id' field.
       * @return The value.
       */
     public java.lang.CharSequence getGuid() {
@@ -204,8 +204,8 @@ public class EventContext extends org.apache.avro.specific.SpecificRecordBase im
     }
 
     /**
-      * Sets the value of the 'guid' field.
-      * @param value The value of 'guid'.
+      * Sets the value of the 'id' field.
+      * @param value The value of 'id'.
       * @return This builder.
       */
     public example.avro.event.publish.EventContext.Builder setGuid(java.lang.CharSequence value) {
@@ -216,8 +216,8 @@ public class EventContext extends org.apache.avro.specific.SpecificRecordBase im
     }
 
     /**
-      * Checks whether the 'guid' field has been set.
-      * @return True if the 'guid' field has been set, false otherwise.
+      * Checks whether the 'id' field has been set.
+      * @return True if the 'id' field has been set, false otherwise.
       */
     public boolean hasGuid() {
       return fieldSetFlags()[0];
@@ -225,7 +225,7 @@ public class EventContext extends org.apache.avro.specific.SpecificRecordBase im
 
 
     /**
-      * Clears the value of the 'guid' field.
+      * Clears the value of the 'id' field.
       * @return This builder.
       */
     public example.avro.event.publish.EventContext.Builder clearGuid() {

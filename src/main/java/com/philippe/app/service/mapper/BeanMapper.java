@@ -1,7 +1,9 @@
 package com.philippe.app.service.mapper;
 
+import com.philippe.app.representation.SparkPocNotificationDTO;
 import com.philippe.app.representation.UserDTO;
 import example.avro.User;
+import example.avro.sparkpoc.Notification;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,12 @@ public class BeanMapper extends ConfigurableMapper {
                 .byDefault()
                 .register();
         factory.classMap(UUID.class, String.class)
+                .byDefault()
+                .register();
+        factory.classMap(SparkPocNotificationDTO.class, com.philippe.app.domain.SparkPocNotification.class)
+                .byDefault()
+                .register();
+        factory.classMap(SparkPocNotificationDTO.class, Notification.class)
                 .byDefault()
                 .register();
     }
