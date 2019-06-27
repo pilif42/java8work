@@ -7,7 +7,7 @@ package example.avro.sparkpoc;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public enum Outcome {
-  Delivered, Returned  ;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"enum\",\"name\":\"Outcome\",\"namespace\":\"example.avro.sparkpoc\",\"symbols\":[\"Delivered\",\"Returned\"],\"default\":\"Delivered\"}");
+  DELIVERED, RETURNED  ;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"enum\",\"name\":\"Outcome\",\"namespace\":\"example.avro.sparkpoc\",\"symbols\":[\"DELIVERED\",\"RETURNED\"],\"default\":\"DELIVERED\"}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 }

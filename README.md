@@ -21,11 +21,16 @@ java -jar java8work-1.0-SNAPSHOT.jar
 curl http://localhost:8151/tester/ -v -X GET
 200
 
+To create a user:
 curl -d '{"name":"Lionel", "favouriteColor":"blaugrana", "favouriteNumber":10}' -H "Content-Type: application/json" -X POST http://localhost:8151/tester/123e4567-e89b-42d3-a456-556642440000/users
 200 {"id":"123e4567-e89b-42d3-a456-556642440000","created":true}
 
 The non-blocking endpoint
 curl http://localhost:8151/async-deferredresult/ -v -X GET
+
+To publish a notification to Kafka:
+curl -d '{"version":"1.0.0","publishTime":"2009-12-31T23:59:59","deviceGuid":"123e4567-e89b-42d3-a456-556642440999","item":{"guid":"123e4567-e89b-42d3-a456-556642440666","itemType":"LETTER"},"outcome":"DELIVERED"}' -H "Content-Type: application/json" -X POST http://localhost:8151/tester/123e4567-e89b-42d3-a456-556642440000/notifications
+200 {"id":"123e4567-e89b-42d3-a456-556642440000","created":true}
 
 
 ##################################################
@@ -94,7 +99,8 @@ info:
 
 
 TODO: publish notifications to the Kafka server.
-
+        - see send(SparkPocNotification sparkPocNotification). Shall we use Spring or directly Apache classes?
+        
 
 TODO: publish events to the Kafka server.
                - an event contains:

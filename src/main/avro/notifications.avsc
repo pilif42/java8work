@@ -11,8 +11,8 @@
                     "namespace": "example.avro.sparkpoc",
                     "fields": [
                          {"name": "guid", "type": "string"},
-                         {"name": "type", "type": {"name": "ItemType", "type": "enum", "default": "Letter", "symbols": ["Letter","Parcel"]}}]}]},
-        {"name": "outcome", "type": {"name": "Outcome", "type": "enum", "default": "Delivered", "symbols": ["Delivered","Returned"]}},
+                         {"name": "type", "type": {"name": "ItemType", "type": "enum", "default": "LETTER", "symbols": ["LETTER","PARCEL"]}}]}]},
+        {"name": "outcome", "type": {"name": "Outcome", "type": "enum", "default": "DELIVERED", "symbols": ["DELIVERED","RETURNED"]}},
         {"name": "deviceGuid", "type": "string"}    // The guid of the device used to complete the delivery (ie handheld device of the postman).
    ]
 }

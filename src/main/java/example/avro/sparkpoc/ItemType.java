@@ -7,7 +7,7 @@ package example.avro.sparkpoc;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public enum ItemType {
-  Letter, Parcel  ;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"enum\",\"name\":\"ItemType\",\"namespace\":\"example.avro.sparkpoc\",\"symbols\":[\"Letter\",\"Parcel\"],\"default\":\"Letter\"}");
+  LETTER, PARCEL  ;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"enum\",\"name\":\"ItemType\",\"namespace\":\"example.avro.sparkpoc\",\"symbols\":[\"LETTER\",\"PARCEL\"],\"default\":\"LETTER\"}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 }
