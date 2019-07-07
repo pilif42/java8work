@@ -19,7 +19,11 @@ public class IteratorServiceImpl implements IteratorService {
         queue.forEach(str -> {
             log.debug("str is {}", str);
             manipulationService.transform(str);
-            queue.remove(str);
+            try {
+                queue.take();
+            } catch(InterruptedException e) {
+                log.error("Issue taking off the queue.", e);
+            }
         });
     }
 }

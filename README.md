@@ -98,6 +98,9 @@ info:
   built: 2018-12-13 06:43:19.77
 
 
+TODO: I added mockito-core 2.28.2 as dependency. Best to remove it and upgrade spring-boot-starter-parent version at some point.
+
+
 TODO: publish notifications to the Kafka server.
         - see send(SparkPocNotification sparkPocNotification). Shall we use Spring or directly Apache classes?
 

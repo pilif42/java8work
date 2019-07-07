@@ -34,6 +34,9 @@ public class IteratorServiceImplTest {
     @Mock
     private ManipulationService manipulationService;
 
+    /**
+     * Problem with this test is that it does not use a Mock for queue. Hence, I can't verify that the take() is called.
+     */
     @Test
     public void testProcess() {
         // GIVEN
