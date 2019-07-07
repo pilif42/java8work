@@ -100,7 +100,7 @@ info:
 
 TODO: publish notifications to the Kafka server.
         - see send(SparkPocNotification sparkPocNotification). Shall we use Spring or directly Apache classes?
-        
+
 
 TODO: publish events to the Kafka server.
                - an event contains:
