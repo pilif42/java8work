@@ -62,7 +62,10 @@ public class PublisherImpl implements Publisher {
         }
 
         log.debug("byteArray is {}", byteArray);
-        // TODO Publish the byteArray to Kafka
+        // TODO Publish the byteArray to Kafka. Choose between:
+        // TODO https://www.baeldung.com/spring-cloud-stream-kafka-avro-confluent
+        // TODO https://www.baeldung.com/spring-kafka
+        // TODO https://codenotfound.com/spring-kafka-apache-avro-serializer-deserializer-example.html
 
         return isEncoded;
     }
