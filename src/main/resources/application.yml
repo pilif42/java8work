@@ -46,3 +46,9 @@ spring:
       enabled: never
   application:
     name: Sample Service
+
+products:
+  priceMap:
+    cap: 10.5
+    tshirt: 20
+    shortS: 30
