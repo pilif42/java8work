@@ -53,12 +53,12 @@ public class GroupingService {
     private Usage aggregateList(List<ApigeeUsage> apigeeUsageList) {
         Usage usage = null;
 
-        BigDecimal freeUsageTotal = ZERO;
+        long freeUsageTotal = 0L;
         BigDecimal chargeableUsageTotal = ZERO;
 
         for (ApigeeUsage apigeeUsage : apigeeUsageList) {
-            BigDecimal freeUsage = apigeeUsage.getFreeUsage();
-            freeUsageTotal = freeUsageTotal.add(freeUsage);
+            long freeUsage = apigeeUsage.getFreeUsage();
+            freeUsageTotal = freeUsageTotal + freeUsage;
 
             PaidItem paidItem = null;
             long chargeableTxCount = apigeeUsage.getChargeableTransactionCount();

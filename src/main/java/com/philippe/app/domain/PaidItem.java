@@ -1,11 +1,13 @@
 package com.philippe.app.domain;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@EqualsAndHashCode
 @Builder
 @Getter
 @Setter
