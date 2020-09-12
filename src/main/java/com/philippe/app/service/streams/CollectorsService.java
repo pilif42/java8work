@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class CollectorsServiceImpl {
+public class CollectorsService {
 
   public void myExperiments() {
     List<Person> personsList = Arrays.asList(new Person("Max", 18), new Person("Peter", 23), new Person("Pamela", 23),

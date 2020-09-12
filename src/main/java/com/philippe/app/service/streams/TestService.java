@@ -15,7 +15,7 @@ import java.util.stream.IntStream;
 
 @Service
 @Slf4j
-public class TestServiceImpl {
+public class TestService {
 
   public void myExperiments() {
     List<Foo> foos = new ArrayList<>();
