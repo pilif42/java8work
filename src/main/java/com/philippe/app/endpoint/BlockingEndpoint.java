@@ -8,10 +8,10 @@ import com.philippe.app.representation.UserDTO;
 import com.philippe.app.exception.CustomException;
 import com.philippe.app.representation.CreatedUserDTO;
 import com.philippe.app.service.dates.CalendarService;
-import com.philippe.app.service.flatmaps.TestService;
 import com.philippe.app.service.kafka.Publisher;
 import com.philippe.app.service.maths.FormulaService;
-import com.philippe.app.service.persons.CollectorsService;
+import com.philippe.app.service.streams.CollectorsServiceImpl;
+import com.philippe.app.service.streams.TestServiceImpl;
 import com.philippe.app.service.strings.SortingService;
 import lombok.extern.slf4j.Slf4j;
 import ma.glasnost.orika.MapperFacade;
@@ -41,7 +41,7 @@ public class BlockingEndpoint {
   private CalendarService calendarService;
 
   @Autowired
-  private CollectorsService collectorsService;
+  private CollectorsServiceImpl collectorsService;
 
   @Autowired
   private FormulaService formulaService;
@@ -50,7 +50,7 @@ public class BlockingEndpoint {
   private SortingService sortingService;
 
   @Autowired
-  private TestService testService;
+  private TestServiceImpl testService;
 
   @Qualifier("beanMapper")
   @Autowired

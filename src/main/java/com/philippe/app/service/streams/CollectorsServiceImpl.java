@@ -1,7 +1,6 @@
-package com.philippe.app.service.persons.impl;
+package com.philippe.app.service.streams;
 
 import com.philippe.app.domain.Person;
-import com.philippe.app.service.persons.CollectorsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +9,9 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class CollectorsServiceImpl implements CollectorsService {
+public class CollectorsServiceImpl {
 
-  @Override public void myExperiments() {
+  public void myExperiments() {
     List<Person> personsList = Arrays.asList(new Person("Max", 18), new Person("Peter", 23), new Person("Pamela", 23),
             new Person("David", 12));
 

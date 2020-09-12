@@ -1,8 +1,7 @@
-package com.philippe.app.service.flatmaps.impl;
+package com.philippe.app.service.streams;
 
 import com.philippe.app.domain.Bar;
 import com.philippe.app.domain.Foo;
-import com.philippe.app.service.flatmaps.TestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +15,8 @@ import java.util.stream.IntStream;
 
 @Service
 @Slf4j
-public class TestServiceImpl implements TestService {
+public class TestServiceImpl {
 
-  @Override
   public void myExperiments() {
     List<Foo> foos = new ArrayList<>();
     IntStream.range(1, 4).forEach(i -> foos.add(new Foo("Foo" + i)));
