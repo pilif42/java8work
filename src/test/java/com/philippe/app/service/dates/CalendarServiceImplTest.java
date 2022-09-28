@@ -1,7 +1,6 @@
 package com.philippe.app.service.dates;
 
 import com.philippe.app.service.dates.impl.CalendarServiceImpl;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -34,13 +33,12 @@ public class CalendarServiceImplTest {
         assertEquals("Text '181301' could not be parsed: Invalid value for MonthOfYear (valid values 1 - 12): 13", exception.getMessage());
     }
 
-    @Test @Disabled("TODO")
+    @Test
     public void printNow_expectNowInISO_DATE_TIME() {
         LocalDateTime now = LocalDateTime.now();
         try (MockedStatic<LocalDateTime> localDateTimeMock = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
             localDateTimeMock.when(LocalDateTime::now).thenReturn(now);
+            assertEquals(now.format(DateTimeFormatter.ISO_DATE_TIME), calendarService.printNow());
         }
-
-        assertEquals(now.format(DateTimeFormatter.ISO_DATE_TIME), calendarService.printNow());
     }
 }
