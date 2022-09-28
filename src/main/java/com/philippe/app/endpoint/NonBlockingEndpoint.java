@@ -9,8 +9,6 @@ import org.springframework.web.context.request.async.DeferredResult;
 
 import java.util.concurrent.ForkJoinPool;
 
-import static java.lang.String.format;
-
 @RestController
 @Slf4j
 public class NonBlockingEndpoint {  // TODO To be unit tested

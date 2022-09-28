@@ -13,4 +13,6 @@ public interface CalendarService {
    * @return date string in ISO_LOCAL_DATE format
    */
   String convertDateFormatToIsoLocalDate(String date);
+
+  String printNow();
 }

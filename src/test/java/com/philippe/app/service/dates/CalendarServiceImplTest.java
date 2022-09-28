@@ -1,22 +1,24 @@
 package com.philippe.app.service.dates;
 
 import com.philippe.app.service.dates.impl.CalendarServiceImpl;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@RunWith(MockitoJUnitRunner.class)
+
+@ExtendWith(MockitoExtension.class)
 public class CalendarServiceImplTest {
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @InjectMocks
     private CalendarServiceImpl calendarService;
@@ -28,9 +30,17 @@ public class CalendarServiceImplTest {
 
     @Test
     public void convertConcourseDateFormatToIsoLocalDateErrorPathInvalidMonth() {
-        expectedException.expect(DateTimeException.class);
-        expectedException.expectMessage("Invalid value for MonthOfYear (valid values 1 - 12): 13");
+        Exception exception = assertThrows(DateTimeException.class, () -> calendarService.convertDateFormatToIsoLocalDate("181301"));
+        assertEquals("Text '181301' could not be parsed: Invalid value for MonthOfYear (valid values 1 - 12): 13", exception.getMessage());
+    }
 
-        calendarService.convertDateFormatToIsoLocalDate("181301");
+    @Test @Disabled("TODO")
+    public void printNow_expectNowInISO_DATE_TIME() {
+        LocalDateTime now = LocalDateTime.now();
+        try (MockedStatic<LocalDateTime> localDateTimeMock = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS)) {
+            localDateTimeMock.when(LocalDateTime::now).thenReturn(now);
+        }
+
+        assertEquals(now.format(DateTimeFormatter.ISO_DATE_TIME), calendarService.printNow());
     }
 }

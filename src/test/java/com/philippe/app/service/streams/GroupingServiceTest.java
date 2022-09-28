@@ -4,11 +4,11 @@ import com.philippe.app.config.ProductsConfiguration;
 import com.philippe.app.domain.ApigeeUsage;
 import com.philippe.app.domain.PaidItem;
 import com.philippe.app.domain.Usage;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,11 +20,11 @@ import java.util.Set;
 import java.util.UUID;
 
 import static java.util.Collections.emptyList;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class GroupingServiceTest {
     private static final UUID ORG_ID_1 = UUID.fromString("10df9793-4c21-4ff0-bd99-923992c9f1ff");
     private static final UUID ORG_ID_2 = UUID.fromString("56a453f2-941d-47be-86b4-13875772140c");

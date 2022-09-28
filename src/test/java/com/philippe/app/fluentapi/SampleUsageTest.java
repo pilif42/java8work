@@ -4,13 +4,13 @@ import com.philippe.app.domain.EventContext;
 import com.philippe.app.domain.Notification;
 import com.philippe.app.domain.NotificationContext;
 import com.philippe.app.domain.NotificationWrapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SampleUsageTest {
 

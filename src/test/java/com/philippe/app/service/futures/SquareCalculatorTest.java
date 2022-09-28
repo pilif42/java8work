@@ -1,6 +1,6 @@
 package com.philippe.app.service.futures;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;

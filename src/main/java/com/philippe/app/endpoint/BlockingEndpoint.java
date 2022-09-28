@@ -2,11 +2,11 @@ package com.philippe.app.endpoint;
 
 import com.philippe.app.domain.SparkPocNotification;
 import com.philippe.app.domain.User;
+import com.philippe.app.exception.CustomException;
 import com.philippe.app.representation.CreatedSparkPocNotificationDTO;
+import com.philippe.app.representation.CreatedUserDTO;
 import com.philippe.app.representation.SparkPocNotificationDTO;
 import com.philippe.app.representation.UserDTO;
-import com.philippe.app.exception.CustomException;
-import com.philippe.app.representation.CreatedUserDTO;
 import com.philippe.app.service.dates.CalendarService;
 import com.philippe.app.service.kafka.Publisher;
 import com.philippe.app.service.maths.FormulaService;

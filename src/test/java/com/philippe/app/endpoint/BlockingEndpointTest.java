@@ -5,13 +5,13 @@ import com.philippe.app.service.kafka.Publisher;
 import com.philippe.app.service.mapper.BeanMapper;
 import com.philippe.app.util.CustomObjectMapper;
 import ma.glasnost.orika.MapperFacade;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -19,17 +19,17 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.UUID;
 
-import static com.philippe.app.util.MvcHelper.postJson;
 import static com.philippe.app.util.MockMvcControllerAdviceHelper.mockAdviceFor;
-import static org.mockito.Matchers.any;
+import static com.philippe.app.util.MvcHelper.postJson;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.handler;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class BlockingEndpointTest {
 
     @InjectMocks
@@ -49,7 +49,7 @@ public class BlockingEndpointTest {
     private static final String USER_VALID_JSON =
             "{\"name\":\"lionel\",\"favouriteColor\":\"blaugrana\",\"favouriteNumber\":10}";
 
-    @Before
+    @BeforeEach
     public void setUp() {
         this.mockMvc = MockMvcBuilders
                 .standaloneSetup(testEndpoint)

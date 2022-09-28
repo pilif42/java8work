@@ -1,10 +1,9 @@
 package com.philippe.app.domain;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class KafkaMetadataDTOTest {
 
@@ -16,9 +15,6 @@ public class KafkaMetadataDTOTest {
 
     private final static String PARTITION_ERROR_MSG = "A partition must be set using method partition.";
     private final static String OFFSET_ERROR_MSG = "A single offset or a range of offset must be set. Not both.";
-
-    @Rule
-    public final ExpectedException exception = ExpectedException.none();
 
     @Test
     public void testHappyPathWithSingleOffset() {
@@ -47,36 +43,31 @@ public class KafkaMetadataDTOTest {
 
     @Test
     public void testErrorPath_noPartitionSet() {
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage(PARTITION_ERROR_MSG);
-        KafkaMetadataDTO.builder().offset(MIN_OFFSET).build();
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> KafkaMetadataDTO.builder().offset(MIN_OFFSET).build());
+        assertEquals(PARTITION_ERROR_MSG, exception.getMessage());
     }
 
     @Test
     public void testErrorPath_noOffsetSet() {
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage(OFFSET_ERROR_MSG);
-        KafkaMetadataDTO.builder().partition(PARTITION).build();
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> KafkaMetadataDTO.builder().partition(PARTITION).build());
+        assertEquals(OFFSET_ERROR_MSG, exception.getMessage());
     }
 
     @Test
     public void testErrorPathWithSingleOffset_minOffsetAlsoSet() {
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage(OFFSET_ERROR_MSG);
-        KafkaMetadataDTO.builder().partition(PARTITION).offset(MIN_OFFSET).minOffset(MIN_OFFSET).build();
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> KafkaMetadataDTO.builder().partition(PARTITION).offset(MIN_OFFSET).minOffset(MIN_OFFSET).build());
+        assertEquals(OFFSET_ERROR_MSG, exception.getMessage());
     }
 
     @Test
     public void testErrorPathWithSingleOffset_maxOffsetAlsoSet() {
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage(OFFSET_ERROR_MSG);
-        KafkaMetadataDTO.builder().partition(PARTITION).offset(MIN_OFFSET).maxOffset(MAX_OFFSET).build();
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> KafkaMetadataDTO.builder().partition(PARTITION).offset(MIN_OFFSET).maxOffset(MAX_OFFSET).build());
+        assertEquals(OFFSET_ERROR_MSG, exception.getMessage());
     }
 
     @Test
     public void testErrorPathWithOffsetRange_singleOffsetAlsoSet() {
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage(OFFSET_ERROR_MSG);
-        KafkaMetadataDTO.builder().partition(PARTITION).offset(MIN_OFFSET).minOffset(MIN_OFFSET).maxOffset(MAX_OFFSET).build();
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> KafkaMetadataDTO.builder().partition(PARTITION).offset(MIN_OFFSET).minOffset(MIN_OFFSET).maxOffset(MAX_OFFSET).build());
+        assertEquals(OFFSET_ERROR_MSG, exception.getMessage());
     }
 }

@@ -1,7 +1,7 @@
 package com.philippe.app.util;
 
 import com.philippe.app.domain.Event;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import static com.philippe.app.util.FilteringUtil.NATIVE;
 import static com.philippe.app.util.FilteringUtil.filterByEventType;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FilteringUtilTest {
 

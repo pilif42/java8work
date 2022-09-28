@@ -3,10 +3,10 @@ package com.philippe.app.util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.philippe.app.domain.KafkaMetadataDTO;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static java.lang.String.format;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class KafkaMetadataDTOSerializerTest {
 

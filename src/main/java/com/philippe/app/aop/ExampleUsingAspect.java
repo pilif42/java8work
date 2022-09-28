@@ -4,9 +4,9 @@ package com.philippe.app.aop;
 //import org.aspectj.lang.annotation.Around;
 //import org.aspectj.lang.annotation.Aspect;
 //import org.aspectj.lang.annotation.Pointcut;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 /**
  * This is a sample class to illustrate what can be achieved with Spring AOP. The idea here is that before a Sample is

@@ -1,15 +1,15 @@
 package com.philippe.app.service.files;
 
 import com.philippe.app.service.files.impl.FileServiceImpl;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class FileServiceTest {
     @InjectMocks
     private FileServiceImpl fileService;
@@ -21,7 +21,7 @@ public class FileServiceTest {
      *
      * @throws IOException
      */
-    @Test @Ignore("Fails when running on Ubuntu. TODO.")
+    @Test @Disabled("Fails when running on Ubuntu. TODO.")
     public void deleteTxtFiles() throws IOException {
         fileService.deleteTxtFiles();
     }

@@ -2,11 +2,11 @@ package com.philippe.app.service.bytes;
 
 import com.google.common.primitives.Longs;
 import org.apache.hadoop.hbase.util.Bytes;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class SampleTest {
 
@@ -24,7 +24,7 @@ public class SampleTest {
         final byte[] result = strValue.getBytes();
 
         // THEN
-        Assert.assertArrayEquals(array, result);
+        assertArrayEquals(array, result);
         assertEquals(SOME_STR, new String(result));
     }
 
@@ -44,6 +44,6 @@ public class SampleTest {
         final byte[] result = Longs.toByteArray(longValue);
 
         // THEN
-        Assert.assertArrayEquals(array, result);
+        assertArrayEquals(array, result);
     }
 }

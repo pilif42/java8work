@@ -7,11 +7,9 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
-import static org.apache.commons.io.filefilter.FileFilterUtils.toList;
 
 @Service
 @Slf4j
