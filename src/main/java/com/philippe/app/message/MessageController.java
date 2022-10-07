@@ -5,11 +5,11 @@ import com.philippe.app.exception.JobException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.jms.JMSException;
+import javax.jms.Message;
 
 /**
  * This is the entry point for the message-related classes.

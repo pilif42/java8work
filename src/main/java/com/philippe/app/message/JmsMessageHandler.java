@@ -3,11 +3,11 @@ package com.philippe.app.message;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.philippe.app.domain.AddressEventMessage;
 import com.philippe.app.exception.JobException;
-import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
+import javax.jms.JMSException;
+import javax.jms.Message;
 import java.util.List;
-
 
 /**
  * JMS Message Handler
@@ -30,7 +30,7 @@ public class JmsMessageHandler {
         this.parser = parser;
     }
 
-    public boolean handle(Message jmsMessage) throws JsonProcessingException, JobException {
+    public boolean handle(Message jmsMessage) throws JsonProcessingException, JobException, JMSException {
         AddressEventMessage addressEvent = parser.parseJMSMessage(jmsMessage);
 
         if (addressEvent != null) {

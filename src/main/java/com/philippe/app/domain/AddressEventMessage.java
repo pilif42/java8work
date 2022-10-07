@@ -7,4 +7,5 @@ import lombok.Setter;
 @Setter
 public class AddressEventMessage {
     private String eventType;
+    private Object data;    // TODO
 }
