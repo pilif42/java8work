@@ -38,26 +38,26 @@ public class CollectorsService {
      * age 12: [David]
      */
     Map<Integer, List<Person>> personsByAge = personsList.stream().sorted(byPersonAgeAscending)
-        .collect(Collectors.groupingBy(p -> p.getAge()));
+        .collect(Collectors.groupingBy(Person::getAge));
     personsByAge.forEach((age, p) -> log.debug("age {}: {}", age, p));
 
-    Double averageAge = personsList.stream().collect(Collectors.averagingInt(p -> p.getAge()));
+    Double averageAge = personsList.stream().collect(Collectors.averagingInt(Person::getAge));
     log.debug("averageAge = {}", averageAge);
 
     // Displays ageSummary = IntSummaryStatistics{count=4, sum=76, min=12, average=19.000000, max=23}
-    IntSummaryStatistics ageSummary = personsList.stream().collect(Collectors.summarizingInt(p -> p.getAge()));
+    IntSummaryStatistics ageSummary = personsList.stream().collect(Collectors.summarizingInt(Person::getAge));
     log.debug("ageSummary = {}", ageSummary);
 
     // Displays phrase = In Germany, Max and Peter and Pamela are of legal age.
-    String phrase = personsList.stream().filter(p -> p.getAge() >= 18).map(p -> p.getName())
+    String phrase = personsList.stream().filter(p -> p.getAge() >= 18).map(Person::getName)
         .collect(Collectors.joining(" and ", "In Germany, ", " are of legal age."));
     log.debug("phrase = {}", phrase);
 
     // Displays map = {18=Max, 23=Peter;Pamela, 12=David}
     Map<Integer, String> map = personsList.stream()
         .collect(Collectors.toMap(
-            p -> p.getAge(),
-            p -> p.getName(),
+                Person::getAge,
+                Person::getName,
             (name1, name2) -> name1 + ";" + name2));
     log.debug("map = {}", map);
   }
