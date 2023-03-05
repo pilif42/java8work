@@ -3,6 +3,8 @@ package com.philippe.app.service.maths;
 import com.philippe.app.service.maths.impl.FormulaServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -27,12 +29,9 @@ public class FormulaServiceImplTest {
         assertTrue(filteredList.containsAll(Arrays.asList(10, 13)));
     }
 
-    @Test
-    public void fibonacciOf() {
-        assertEquals(0, formulaService.fibonacciOf(0));
-        assertEquals(1, formulaService.fibonacciOf(1));
-        assertEquals(1, formulaService.fibonacciOf(2));
-        assertEquals(2, formulaService.fibonacciOf(3));
-        assertEquals(317811, formulaService.fibonacciOf(28));
+    @ParameterizedTest
+    @CsvSource({"0,0", "1,1", "2,1", "3,2", "28,317811"})
+    public void fibonacciOf(int input, int expectedOutput) {
+        assertEquals(expectedOutput, formulaService.fibonacciOf(input));
     }
 }
